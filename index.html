@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma 2-Do List</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Ma Liste des tâches</h1>
+        <p>Gère et planifie tout ce que tu prevois de faire depuis ici.</p>
+    </header>
+<main>
+    <div class="app">
+        <div class="list-add">
+            <h2>Ma liste :</h2> <button class="Add-task" id="addTask">➕</button>
+        </div>
+        <div class="formulaire">
+            <div class="conteneur-tasktext">
+                <input type="text" placeholder="Ecrivez ici" class="task" id="task">
+                <button disabled id="fait">✅</button>
+            </div>
+            <h3 id="full">La liste des taches est pleine !</h3>
+            <h3 id="error">Impossible de valider - Limite atteinte</h3>
+        </div>
+        <div class="list">
+            <p id="textLiEmpty">👇 Vos tâches apparaitrons ici 👇</p>
+            <ul> 
+                
+            </ul>
+                
+        </div>
+    <button id="deleteAll" disabled>ALL</button>
+    </div>
+</main>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
