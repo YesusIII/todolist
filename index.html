@@ -19,7 +19,10 @@
         </div>
         <div class="formulaire">
             <div class="conteneur-tasktext">
-                <input type="text" placeholder="Ecrivez ici" class="task" id="task">
+                <div class="counterInput">
+                    <input type="text" placeholder="Ecrivez ici" class="task" id="task">
+                    <p id="counterText"> <span id="counter"> 0 </span> / 50</p>
+                </div>
                 <button disabled id="fait">✅</button>
             </div>
             <h3 id="full">La liste des taches est pleine !</h3>
@@ -38,3 +41,4 @@
     <script src="./assets/script.js"></script>
 </body>
 </html>
+

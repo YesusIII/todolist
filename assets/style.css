@@ -89,13 +89,34 @@ header p{
     overflow: hidden;
     transition: max-height .5s ease;
     max-height: 0;
+    display: flex;
 }
 .conteneur-tasktext.active{
     gap: 5px;
     display: flex;
     max-height: 50px;
 }
+
+.counterInput{
+    position: relative;
+    width: 100%;
+}
+#counterText {
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+#counterText.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .task{
+    position: relative;
     width: 85%;
     height: 50px;
     border-radius: 15px;
@@ -178,7 +199,11 @@ outline: none;
     border: 1px #0059ff7c solid;
     border-radius: 25px;
 }
-
+.list li p{
+    font-size: 0.8rem;
+    margin-top: auto;
+    font-style: italic;
+}
 
 #deleteAll{
 display: block;
@@ -198,6 +223,7 @@ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     transform: scale(1.1);
     background: hsl(0, 100%, 50%);
     box-shadow: #00000041 0px 12px 30px 4px;
+    
 }
 
 #deleteAll:disabled {
