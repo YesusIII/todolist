@@ -55,6 +55,13 @@ const len = this.value.length
             counter.style.textDecoration = "none"
         }
 })
+
+inputTask.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        done.click()
+    }
+})
+
     //Ajout des tasks : li et bouttons//
 
 
@@ -65,8 +72,9 @@ done.addEventListener('click', function() {
         const tache = {
             texte: inputTask.value,
             complete: false,
-            date: now.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric'})
-        }
+            date: now.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric'}),
+            time: null
+            }
         taches.push(tache)
         localStorage.setItem('taches', JSON.stringify(taches))
         creerLi(tache)
@@ -78,7 +86,9 @@ done.addEventListener('click', function() {
         if (ulTarget.children.length === 10) { done.disabled = true }} 
         else {
         full.style.display = "block"
-        }})
+        }
+    taskInput.classList.remove('active')
+})
 
 
 clearBtn.addEventListener('click', function(){
@@ -89,23 +99,26 @@ clearBtn.addEventListener('click', function(){
         taches.length = 0
         localStorage.setItem('taches', JSON.stringify(taches))
     }
+
+
 })
 
 
 window.addEventListener('load', function() {
     const donneesSauvegardees = localStorage.getItem('taches')
-    console.log("données:", donneesSauvegardees)
     if (donneesSauvegardees) {
         const data = JSON.parse(donneesSauvegardees)
-        console.log("data parsée:", data)
         data.forEach(t => {
-            console.log("création li:", t)
             taches.push(t)
             creerLi(t)
-            textListEmpty.style.display = "none"
-            clearBtn.disabled = false
         })
+    textListEmpty.style.display = "none"
+    clearBtn.disabled = false
+    if (ulTarget.children.length === 10) { done.disabled = true }
+    if (ulTarget.children.length === 0) {
+    clearBtn.disabled = true
+    textListEmpty.style.display = "block"
     }
-})
+}})
 
 
