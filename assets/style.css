@@ -223,7 +223,7 @@ outline: none;
 }
 
 .edit-input {
-    margin: 30px 0;
+    margin-top: 20px;
     width: 100%;
     overflow: hidden;
     transition: max-height 0.5s ease;
@@ -309,4 +309,5 @@ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     .list div{padding: 5px 15px;}
 
 }
+
 
