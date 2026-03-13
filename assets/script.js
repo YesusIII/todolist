@@ -1,4 +1,4 @@
-import { done, inputTask, addBtn, taskInput,textListEmpty, ulTarget, full, clearBtn, error, spanText, taches, pCounterText, counter } 
+import { done, inputTask, addBtn, taskInput,textListEmpty, ulTarget, full, clearBtn, error, spanText, taches, pCounterText, counter,} 
     from './variables.js'
 import { creerLi } from './creerLi.js'
 
@@ -25,7 +25,9 @@ inputTask.addEventListener('blur', function() {
 
 
 inputTask.addEventListener('input', function() {
-    if (this.value.length > 0 ) {done.disabled = false}
+    if (this.value.length > 0 && ulTarget.children.length < 10) { 
+    done.disabled = false 
+}
     else { done.disabled = true }
     if (this.value.length > 50) {
         error.style.display = "block"
@@ -60,6 +62,11 @@ inputTask.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         done.click()
     }
+     if (e.key === 'Escape') {        
+        inputTask.value = ""
+        counter.textContent = "0" 
+        taskInput.classList.remove('active') 
+    }
 })
 
     //Ajout des tasks : li et bouttons//
@@ -79,15 +86,26 @@ done.addEventListener('click', function() {
         localStorage.setItem('taches', JSON.stringify(taches))
         creerLi(tache)
 
-        textListEmpty.style.display = "none" //masque le text h3 qui dis les listes vont arrivés la
+        textListEmpty.style.display = "none" //masque le text h3 qui dit les listes vont arrivés la
         clearBtn.disabled = false //j'active donc False mon button clear All (#deleteAll)
-        inputTask.value = "" //remet mon input vide
-        done.disabled = true //remet mon bouton validation en disabled
-        if (ulTarget.children.length === 10) { done.disabled = true }} 
+         //remet mon input vide
+                
+        taskInput.classList.remove('active')
+        inputTask.value = ""
+    counter.textContent = "0"
+    done.disabled = true
+    if (ulTarget.children.length === 10) {
+        done.textContent = "⚠️" 
+            done.disabled = true 
+            taskInput.classList.add('active')
+            full.style.display = "block"
+               }
         else {
-        full.style.display = "block"
-        }
-    taskInput.classList.remove('active')
+        
+            done.textContent = "✅"
+            done.disabled = true //remet mon bouton validation en disabled
+                
+        }} 
 })
 
 
@@ -98,6 +116,7 @@ clearBtn.addEventListener('click', function(){
         clearBtn.disabled = true
         taches.length = 0
         localStorage.setItem('taches', JSON.stringify(taches))
+        done.textContent = "✅"
     }
 
 
@@ -114,7 +133,10 @@ window.addEventListener('load', function() {
         })
     textListEmpty.style.display = "none"
     clearBtn.disabled = false
-    if (ulTarget.children.length === 10) { done.disabled = true }
+    if (ulTarget.children.length === 10) { 
+        done.disabled = true 
+        full.style.display = "block"
+    done.textContent = "⚠️" }
     if (ulTarget.children.length === 0) {
     clearBtn.disabled = true
     textListEmpty.style.display = "block"

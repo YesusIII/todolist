@@ -1,4 +1,4 @@
-import { ulTarget, taches, clearBtn, textListEmpty, full, taskInput } from './variables.js'
+import { ulTarget, taches, clearBtn, textListEmpty, full, taskInput, done, inputTask} from './variables.js'
 export function creerLi(tache) {
 
 
@@ -61,6 +61,7 @@ divEditInput.appendChild(inputEditBack)
 
     deleteBtn.addEventListener('click', function(){
         const index = Array.from(ulTarget.children).indexOf(list)
+        if (inputTask.value.length > 0) { done.disabled = false } else {done.disabled = true}
             list.remove()
             full.style.display = "none"
             taches.splice(index, 1)
@@ -68,6 +69,8 @@ divEditInput.appendChild(inputEditBack)
             if (ulTarget.children.length === 0) {
             clearBtn.disabled = true
             textListEmpty.style.display = "block"}
+            done.textContent = "✅"
+            
         })
     completeBtn.addEventListener('click', function(){
         const index = Array.from(ulTarget.children).indexOf(list)
@@ -97,8 +100,13 @@ divEditInput.appendChild(inputEditBack)
         localStorage.setItem('taches', JSON.stringify(taches))
         inputEdit.value = ""
         divEditInput.classList.toggle('active')
-    })
-        }
-
+    })    
     
+    inputEdit.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { inputEditVal.click() }
+    if (e.key === 'Escape') { inputEditBack.click() }
+        })
+
+    }
+
     
